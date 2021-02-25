@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Set
+      let set = new Set([1, 3, 4, 5, 6, 4, 6]);
+      console.log(set); // Set是一种无重复的集合类型
+      set.add(7);
+      console.log(set);
+      set.delete(1);
+      console.log(set);
+      // set 使用场景
+      let arr = [1, 1, 2, 3, 4];
+      let arr1 = Array.from(new Set(arr)); // 1,2,3,4
+      //方法2
+      let arr2 = [...new Set(arr)]; // 1,2,3,4
+
+      // Map [[key,value]]
+      // Map 使用方法 快速查找法
+      let map = new Map([["key", "value"]]);
+      console.log(map);
+      map.set("add", "value");
+      console.log(map);
+      map.delete("add");
+      console.log(map);
+      console.log(map.has("add"));
+
+      //ES5/ES6 继承方式
+      //   prototype 继承
+      function extend(name, user) {
+        this.name = name;
+        this.user = user;
+      }
+      function user() {}
+      user.prototype = new extend("extend", { age: 1 });
+      let user1 = new user();
+      let user2 = new user();
+      user1.user.age = "6";
+      console.log(user1.user.age, user1.user.age); // 6,6 prototype 引用类型 修改导致全部修改
+
+      //使用构造函数解决
+
+      //看下例：如果没有提升，foo 会是块作用域外的Foo实例。但是由于提升的关系，块作用域内的Foo遮蔽了外层的同名函数
+      //   var Foo = function () {
+      //     this.foo = 21;
+      //   };
+
+      //   {
+      //     const foo = new Foo(); // ReferenceError: Foo is not defined
+      //     class Foo {
+      //       constructor() {
+      //         this.foo = 37;
+      //       }
+      //     }
+      //   }
+      class Person {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+      }
+      let _Person = new Person("x", "y");
+      console.log(_Person);
+
+      //es5 继承构造函数
+      //es6 继承方式 extends
+      class Es61 {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        getkey() {
+          return `${this.name}-${this.age}`;
+        }
+      }
+      class Es62 extends Es61 {
+        constructor(name, age) {
+          super(name,age); //继承父类name，age
+        }
+        getUser() {
+          return `${this.name}-${this.age}`;
+        }
+        //方法重写
+        getkey() {
+          return `${this.name}-${this.age}重写`;
+        }
+      }
+      let es = new Es62("rona", "age");
+      console.log(es)
+      console.log(es.getkey()); //父类的方法也继承了
+    </script>
+  </body>
+</html>

@@ -87,7 +87,7 @@
       //   4
       // 什么是防抖和节流？有什么区别？如何实现？
       //防抖以最后一次执行为准
-      // 场景：页面resize 、scroll、页面登录按钮、发短信按钮
+      // 场景：搜索（key up）
       function debounce(fn, time) {
         let timer;
         return function () {
@@ -108,7 +108,7 @@
         false
       );
       //节流：间隔输出
-      // 场景：持续通信、看出页面变化
+      // 场景：页面resize 、scroll、抢购、疯狂点击,
       function thorttle(fn, time) {
         let last; //最后执行时间
         let timer;
